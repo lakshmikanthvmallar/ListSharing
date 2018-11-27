@@ -1,0 +1,34 @@
+{
+  "name": "listsharing",
+  "version": "1.0.0",
+  "description": "Basic List Sharing Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.1.22",
+    "aws-amplify": "^1.1.10",
+    "aws-amplify-react": "^2.1.4",
+    "aws-appsync": "^1.5.1",
+    "aws-appsync-react": "^1.2.2",
+    "aws-sdk": "^2.361.0",
+    "graphql": "^14.0.2",
+    "react": "^16.6.3",
+    "react-apollo": "^2.3.1",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "react-scripts": "^2.1.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
