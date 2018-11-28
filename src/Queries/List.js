@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const getListByUser = gql`
-  query GetList($userId: String!) {
+  query GetListByUser($userId: String!) {
     getList(userId: $userId) {
       __typename
       listId
@@ -22,7 +22,6 @@ const CreateList = gql`
       listId
       listTitle
       listStatus
-      userId
       items {
         __typename
         itemId
@@ -38,7 +37,6 @@ const updateList = gql`
       listId
       listTitle
       listStatus
-      userId
       items {   
         __typename     
         itemId

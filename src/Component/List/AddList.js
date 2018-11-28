@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uuidv1  from 'uuid/v1';
 
 export default class AddList extends Component {
 
@@ -12,10 +13,12 @@ export default class AddList extends Component {
   }
 
   getInitialState = () => ({
+    listId: '',
     listTitle: '',
     listDescription: 'xczcx',
     listStatus: 'active',
-    userId: '1'
+    userId: '1',
+    items: []
   });
 
   handleChange = (field, event) => {
@@ -27,7 +30,10 @@ export default class AddList extends Component {
   }
 
   handleAdd = () => {
-    this.props.onAdd(this.state);
+    const list = {...this.state};
+    const listId = uuidv1();
+    list.listId = listId;
+    this.props.onAdd(list);
     this.setState(this.getInitialState());
   }
 

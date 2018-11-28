@@ -5,6 +5,7 @@ import './App.css';
 import { getListByUser, CreateList, NewListSubscription } from './Queries/List';
 import ListContainer from './Container/ListContainer';
 import AddList from './Component/List/AddList';
+import gql from 'graphql-tag';
 
 
 class App extends Component {
@@ -49,21 +50,21 @@ const ShowList = compose(
 
 const NewList = graphql(CreateList, {
   props: (props) => ({
-      test: props,
-      onAdd: list => props.mutate({
-          variables: list,
-          optimisticResponse: () => ({ addList: { ...list, __typename: 'List' } }),
-      })
+    test: props,
+    onAdd: list => props.mutate({
+      variables: list,
+      optimisticResponse: () => ({ addList: { ...list, __typename: 'List' } }),
+    })
   }),
   options: {
-      update: (dataProxy, { data: { addList } }) => {
-        console.log(data);
-        //addList.listTitle = addList.listTitle + ' PENDING'
-        const query = getListByUser;
-        const data = dataProxy.readQuery({ query, variables:{userId: "1"} });
-        data.getList.push(addList);
-        console.log(data)
-        dataProxy.writeQuery({ query, data });
-      }
+    update: (dataProxy, { data: { addList } }) => {
+      // console.log(data);
+      //addList.listTitle = addList.listTitle + ' PENDING'
+      const params = { query: gql(getListByUser), variables: { userId: "1" } };
+      const newData = dataProxy.readQuery(params);
+      newData.getList.push(addList);
+      console.log(newData)
+      dataProxy.writeQuery({ query:gql(getListByUser), variables: { userId: "1"},data: newData });
+    }
   }
 })(AddList);
