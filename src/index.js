@@ -41,6 +41,7 @@ const client = new AWSAppSyncClient({
   },
   complexObjectsCredentials: () => Auth.currentCredentials(),
   onError: (e) => { console.log(e) },
+  disableOffline: true
 });
 
 const AppWithAuth = withAuthenticator(App, true);

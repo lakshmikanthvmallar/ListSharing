@@ -7,41 +7,38 @@ const getListByUser = gql`
       listId
       listTitle
       listStatus
-      items {
-        __typename
-        itemId
-        itemContent
-      }
+      listContent
+      createdDate
+      modifiedDate
+      userIds
     }
 }`;
 
 const CreateList = gql`
-  mutation CreateList($listTitle: String!, $listStatus: String!, $userId: String! ) {
-    createList(listTitle: $listTitle, listStatus:$listStatus, userId:$userId ) {  
+  mutation CreateList($listTitle: String!, $listStatus: String!, $userIds: String! ) {
+    createList(listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds ) {  
       __typename    
       listId
       listTitle
       listStatus
-      items {
-        __typename
-        itemId
-        itemContent
-      }
+      listContent
+      createdDate
+      modifiedDate
+      userIds
     }
 }`;
 
 const updateList = gql`
   mutation {
-    updateList(listId: $listId,listTitle: $listTitle, listStatus:$listStatus, userId:$userId, listDescription: $listDescription ) {
+    updateList(listId: $listId,listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds, listDescription: $listDescription ) {
       __typename
       listId
       listTitle
       listStatus
-      items {   
-        __typename     
-        itemId
-        itemContent
-      }
+      listContent
+      createdDate
+      modifiedDate
+      userIds
     }
 }`;
 
@@ -52,11 +49,10 @@ const NewListSubscription = gql`
       listId
       listTitle
       listStatus
-      items {
-        __typename
-        itemId
-        itemContent
-      }
+      listContent
+      createdDate
+      modifiedDate
+      userId
     }
   }`;
 

@@ -37,7 +37,7 @@ h1{
   position: relative;
   outline: transparent solid 1px;
   transition: outline 0.218s linear 0s;
-  width: 30%;
+  width: 30% !important;
   display: inline-block;
   margin: 16px 1.5%;
 }
@@ -58,4 +58,20 @@ h1{
   letter-spacing: 0.3px;
   line-height: 16px;
   padding: 10px 16px 0px;
+}
+
+.list-container .item-content-teaxtarea {
+  background-color: transparent;
+    border: none;
+    padding: 0;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+    vertical-align: top;
+    width: 90%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 10px 16px 0px;
+    font-size: 15px;
+    font-weight: 400;
 }

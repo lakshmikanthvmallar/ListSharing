@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import uuidv1  from 'uuid/v1';
+import { Mutation } from 'react-apollo';
+import { CreateList, getListByUser } from "../../Queries/List";
 
 export default class AddList extends Component {
 
@@ -13,12 +14,10 @@ export default class AddList extends Component {
   }
 
   getInitialState = () => ({
-    listId: '',
     listTitle: '',
-    listDescription: 'xczcx',
+    listContent: 'xczcx',
     listStatus: 'active',
-    userId: '1',
-    items: []
+    userIds: '"1","2"'
   });
 
   handleChange = (field, event) => {
@@ -29,11 +28,32 @@ export default class AddList extends Component {
     });
   }
 
-  handleAdd = () => {
+  handleAdd = (CreateList) => {
     const list = {...this.state};
-    const listId = uuidv1();
-    list.listId = listId;
-    this.props.onAdd(list);
+    CreateList({ 
+      variables: list, 
+      optimisticResponse: {
+        createList: {
+          __typename: 'List',
+          listId: "-1",
+          listTitle: list.listTitle,
+          listContent: list.listContent,
+          listStatus:list.listStatus
+        }
+      },
+      update: (store, { data: { createList } }) => {
+        const newData = store.readQuery({
+          query: getListByUser,
+          variables: {userId: "1"}
+        });
+        newData.getList.unshift(createList);
+        store.writeQuery({
+          query: getListByUser,
+          variables: {userId: "1"},
+          data: newData
+        })
+      }
+    });
     this.setState(this.getInitialState());
   }
 
@@ -43,23 +63,29 @@ export default class AddList extends Component {
 
   render() {
     return (
-      <fieldset >
-          <legend>Add new List</legend>
-          <div>
-            <label>List Title
-              <input 
-                type="text" 
-                placeholder="List Title" 
-                value={this.state.listTitle} 
-                onChange={this.handleChange.bind(this, 'listTitle')} 
-              />
-            </label>
-          </div>
-          <div>
-            <button onClick={this.handleAdd}>Add new List</button>
-            <button onClick={this.handleCancel}>Cancel</button>
-          </div>
-      </fieldset>
+      <Mutation 
+        mutation={CreateList}
+      >
+        {(CreateList) => (
+          <fieldset >
+              <legend>Add new List</legend>
+              <div>
+                <label>List Title
+                  <input 
+                    type="text" 
+                    placeholder="List Title" 
+                    value={this.state.listTitle} 
+                    onChange={this.handleChange.bind(this, 'listTitle')} 
+                  />
+                </label>
+              </div>
+              <div>
+                <button onClick={() => this.handleAdd(CreateList)}>Add new List</button>
+                <button onClick={this.handleCancel}>Cancel</button>
+              </div>
+          </fieldset>
+        )}
+      </Mutation>
     );
   }
 }

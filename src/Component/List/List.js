@@ -3,13 +3,18 @@ import Item from './Item';
 
 const List = (props) => {
   return(
-  <div className="list-container">
+  <div className="list-container" onClick={() => props.onClickList(props.listId)}>
     <div className="list-title">{props.listTitle}</div>
-    {props.items.length > 0 ? 
-      props.items.map((item) => (
-        <Item key={item.itemId} {...item} />
-      ))
-      : null
+
+    {(props.addNewItem && props.selectedListId !== null && props.selectedListId === props.listId) ? 
+      <textarea 
+        className="item-content-teaxtarea"
+        type="text" 
+        name="item" 
+        onChange={props.onChangeItemContent}
+      >{props.listContent}</textarea>
+      : 
+      <Item key={props.listId} listContent={props.listContent} />
     }
   </div>
 )}
