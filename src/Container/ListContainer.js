@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Query } from 'react-apollo';
 
 import List from "../Component/List/List";
-import { getListByUser } from "../Queries/List";
+import { getListByUser,deleteList } from "../Queries/List";
 
 class ListContainer extends Component {
 
@@ -11,6 +11,23 @@ class ListContainer extends Component {
     selectedListId: "",
     newItemContent: ""
   };
+
+  onClickDelete=(listId) => {
+    const variables = {
+      listId:listId
+    }
+    deleteList({
+      variables,
+      update: (store, {data: {deleteList}}) => {
+          const data = store.readQuery({
+            query: getListByUser, 
+            variables: { listId:listId}
+           })
+          //data.Drawer.list = data.Drawer.list.filter(card => list.listId !== deleteList.list.listId)
+          store.writeQuery({query: getListByUser, data})
+        }
+    })
+  }
 
   onClickList = (listId) => {
     this.setState({ addNewItem: true, selectedListId: listId });
@@ -42,6 +59,7 @@ class ListContainer extends Component {
                   selectedListId={this.state.selectedListId}
                   newItemContent={this.state.newItemContent}
                   onChangeItemContent={this.onChangeItemContent}
+                  onClickDelete={this.onClickDelete}
                 />
               )
             )
