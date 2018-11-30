@@ -29,8 +29,8 @@ const CreateList = gql`
 }`;
 
 const updateList = gql`
-  mutation {
-    updateList(listId: $listId,listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds, listDescription: $listDescription ) {
+  mutation UpdateList($listId: String!,$listTitle: String!, $listStatus: String!, $userIds: String!, $listContent: String ) {
+    updateList(listId: $listId,listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds, listContent: $listContent ) {
       __typename
       listId
       listTitle

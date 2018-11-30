@@ -8,13 +8,17 @@ const List = (props) => {
 
     {(props.addNewItem && props.selectedListId !== null && props.selectedListId === props.listId) ? 
       <textarea 
-        className="item-content-teaxtarea"
         type="text" 
         name="item" 
         onChange={props.onChangeItemContent}
-      >{props.listContent}</textarea>
+      >{(props.listContent && props.listContent !== "null") ? props.listContent : "" }
+      </textarea>
       : 
-      <Item key={props.listId} listContent={props.listContent} />
+      <Item 
+        key={props.listId} 
+        listContent={
+          (props.listContent && props.listContent !== "null") ? props.listContent : "" } 
+        />
     }
   </div>
 )}

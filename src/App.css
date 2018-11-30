@@ -60,18 +60,18 @@ h1{
   padding: 10px 16px 0px;
 }
 
-.list-container .item-content-teaxtarea {
+.list-container textarea {
   background-color: transparent;
-    border: none;
-    padding: 0;
-    outline: none;
-    overflow: hidden;
-    resize: none;
-    vertical-align: top;
-    width: 90%;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    margin: 10px 16px 0px;
-    font-size: 15px;
-    font-weight: 400;
+  border: none;
+  padding: 0;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  vertical-align: top;
+  width: 90%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 10px 16px 0px;
+  font-size: 15px;
+  font-weight: 400;
 }
