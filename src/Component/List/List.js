@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './Item';
+import removeIcon  from '../../assets/remove.png';
 
 const List = (props) => {
   return(
@@ -20,6 +21,7 @@ const List = (props) => {
           (props.listContent && props.listContent !== "null") ? props.listContent : "" } 
         />
     }
+    <img src={removeIcon} onClick={() => props.onClickDelete(props.listId)}/>
   </div>
 )}
 

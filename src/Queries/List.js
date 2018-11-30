@@ -42,6 +42,11 @@ const updateList = gql`
     }
 }`;
 
+const deleteList = gql`
+  mutation deleteList($listId: String!) {
+    deleteList(listId: $listId)
+  }`
+
 const NewListSubscription = gql`
   subscription SubscribeToList {
     onAddList {
@@ -56,4 +61,4 @@ const NewListSubscription = gql`
     }
   }`;
 
-export { getListByUser, CreateList, updateList, NewListSubscription };
+export { getListByUser, CreateList, updateList,deleteList,NewListSubscription };
