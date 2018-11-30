@@ -15,7 +15,7 @@ export default class AddList extends Component {
 
   getInitialState = () => ({
     listTitle: '',
-    listContent: 'xczcx',
+    listContent: '',
     listStatus: 'active',
     userIds: '"1","2"'
   });

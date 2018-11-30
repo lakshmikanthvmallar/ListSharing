@@ -37,6 +37,11 @@ class ListContainer extends Component {
     this.setState({ newItemContent: event.target.value });
   }
 
+  handleEditComplete = (list) => {
+    const listData = {...list};
+    // this.setState({  })
+  }
+
   render() {
     return (
       <Query 
@@ -60,6 +65,7 @@ class ListContainer extends Component {
                   newItemContent={this.state.newItemContent}
                   onChangeItemContent={this.onChangeItemContent}
                   onClickDelete={this.onClickDelete}
+                  handleEditComplete={() => this.handleEditComplete(list)}
                 />
               )
             )

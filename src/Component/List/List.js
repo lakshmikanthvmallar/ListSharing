@@ -22,6 +22,11 @@ const List = (props) => {
         />
     }
     <img src={removeIcon} onClick={() => props.onClickDelete(props.listId)}/>
+    {(props.addNewItem && props.selectedListId !== null && props.selectedListId === props.listId) ? 
+      <button type="button" onClick={props.handleEditComplete}>
+        Done
+      </button> 
+    : null }
   </div>
 )}
 
