@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const getListByUser = gql`
-  query GetListByUser($userId: String!) {
+  query getListByUser($userId: String!) {
     getList(userId: $userId) {
       __typename
       listId
@@ -15,8 +15,8 @@ const getListByUser = gql`
 }`;
 
 const CreateList = gql`
-  mutation CreateList($listTitle: String!, $listStatus: String!, $userIds: String! ) {
-    createList(listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds ) {  
+  mutation CreateList($listTitle: String!, $listStatus: String!, $userIds: String!, $listContent: String  ) {
+    createList(listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds, listContent: $listContent ) {  
       __typename    
       listId
       listTitle
@@ -29,8 +29,8 @@ const CreateList = gql`
 }`;
 
 const updateList = gql`
-  mutation UpdateList($listId: String!,$listTitle: String!, $listStatus: String!, $userIds: String!, $listContent: String ) {
-    updateList(listId: $listId,listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds, listContent: $listContent ) {
+  mutation updateList($listId: String!,$listTitle: String!, $listStatus: String!, $userIds: String!, $listContent: String, $createdDate: String ) {
+    updateList(listId: $listId,listTitle: $listTitle, listStatus:$listStatus, userIds:$userIds, listContent: $listContent, createdDate: $createdDate ) {
       __typename
       listId
       listTitle
@@ -44,7 +44,10 @@ const updateList = gql`
 
 const deleteList = gql`
   mutation deleteList($listId: String!) {
-    deleteList(listId: $listId)
+    deleteList(listId: $listId) {
+      __typename
+      listId
+    }
   }`
 
 const NewListSubscription = gql`
@@ -61,4 +64,4 @@ const NewListSubscription = gql`
     }
   }`;
 
-export { getListByUser, CreateList, updateList,deleteList,NewListSubscription };
+export { getListByUser, CreateList, updateList, deleteList,NewListSubscription };
