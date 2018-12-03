@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 
 import List from "../Component/List/List";
 import { getListByUser } from "../Queries/List";
+import UserList from "../Component/List/UserList";
 
 class ListContainer extends Component {
 
@@ -64,7 +65,8 @@ class ListContainer extends Component {
             }
 
             return (
-              data.getList.map(list => 
+              <div>
+              {data.getList.map(list => 
                 <List 
                   key={list.listId} 
                   list={list} 
@@ -76,7 +78,9 @@ class ListContainer extends Component {
                   onClickDelete={this.onClickDelete}
                   handleCompleteEdit={this.onHandleCompleteEdit}
                 />
-              )
+              )}
+              <UserList/>
+              </div>
             )
           }          
         }
