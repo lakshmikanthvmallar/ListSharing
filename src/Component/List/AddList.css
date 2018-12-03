@@ -1,0 +1,46 @@
+fieldset{
+  height:auto;
+  width:90%;
+  text-align:center;
+  margin:15px;
+  background:#E8E9EC;
+  border-radius:4px;
+  box-shadow: outset 1px 1px 0 rgba(0,0,0,.1), outset 0 -1px 0 rgba(0,0,0,.07);
+}
+.add-list legend{
+  font-weight:bold;
+  font-size:20px;
+  color:#091D58;
+}
+.add-list-field{
+padding-top:20px;
+padding-bottom:30px;
+}
+.add-list-field  label{
+color:black;
+font-weight:500;
+
+}
+.add-list-field input{
+  margin:10px;
+  padding:5px;
+  border:2px solid #63605F;
+}
+.add-list .add-button{
+  background:#1B732D;
+  border-radius:2px;
+  height:30px;
+  width:10%;
+  margin:10px;
+  border:none;
+  color:#fff;
+}
+.add-list .cancel-button{
+  background:#878D88;
+  border-radius:2px;
+  height:30px;
+  width:10%;
+  margin:10px;
+  border:none;
+  color:#fff;
+}

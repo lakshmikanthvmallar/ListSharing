@@ -87,3 +87,11 @@ h1{
   font-size: 15px;
   font-weight: 400;
 }
+
+.Nav__navBar___12NMr {
+    position: relative;
+    border: 1px solid transparent;
+    border-color: #e7e7e7;
+    background-color: #29324e;
+    color: #fff;
+}

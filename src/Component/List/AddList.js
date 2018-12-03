@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from 'react-apollo';
 import { CreateList, getListByUser } from "../../Queries/List";
+import addListStyle from "./AddList.css";
 
 export default class AddList extends Component {
 
@@ -67,9 +68,9 @@ export default class AddList extends Component {
         mutation={CreateList}
       >
         {(CreateList) => (
-          <fieldset >
-              <legend>Add new List</legend>
-              <div>
+          <fieldset className="add-list">
+              <legend >Add new List</legend>
+              <div className="add-list-field">
                 <label>List Title
                   <input 
                     type="text" 
@@ -80,8 +81,8 @@ export default class AddList extends Component {
                 </label>
               </div>
               <div>
-                <button onClick={() => this.handleAdd(CreateList)}>Add new List</button>
-                <button onClick={this.handleCancel}>Cancel</button>
+                <button className="add-button" onClick={() => this.handleAdd(CreateList)}>Add new List</button>
+                <button className="cancel-button"onClick={this.handleCancel}>Cancel</button>
               </div>
           </fieldset>
         )}
